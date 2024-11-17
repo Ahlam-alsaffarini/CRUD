@@ -1,0 +1,111 @@
+:root {
+  --main-color: #0075ff;
+  --input-errors: hsl(0, 100%, 66%);
+  --input-valid: #1d98f9;
+}
+body {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Cairo", sans-serif;
+  background-color: aliceblue;
+  min-height: 100vh;
+}
+/* start main  */
+.main .btn {
+  width: fit-content;
+}
+.main .fa-box-open {
+  font-size: 26px;
+  margin-right: 10px;
+}
+.main .main-title {
+  margin: 20px 40px;
+  font-weight: 700;
+}
+
+.main thead tr th {
+  color: white;
+  background-color: var(--main-color);
+  padding-left: 15px;
+  border-left: 1px solid #ccc;
+  text-align: center;
+}
+.main tbody tr td {
+  vertical-align: middle;
+  text-align: center;
+  padding: 15px 10px;
+}
+.main tbody tr .description {
+  overflow-wrap: anywhere;
+  max-width: 300px;
+  text-align: start;
+}
+
+.main tbody tr img {
+  height: 100px;
+}
+.main tbody tr .icons div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+@media (max-width: 576px) {
+  .main tbody tr .icons div {
+    flex-direction: column;
+  }
+}
+.main tbody tr .icons div a {
+  text-decoration: none;
+  cursor: pointer;
+}
+/* end main  */
+/* start add product  */
+.secondary {
+  max-width: 560px;
+}
+.secondary form input,
+.secondary form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+.secondary form input:focus,
+.secondary form textarea:focus {
+  box-shadow: none;
+  outline: none;
+}
+.secondary form input::placeholder,
+.secondary form textarea::placeholder {
+  color: #aaa;
+}
+/* end add product  */
+
+/* start show product  */
+.show-product {
+  max-width: 750px;
+}
+.show-product .Product-info p {
+  color: #888;
+  line-height: 1.7em;
+  overflow-wrap: anywhere;
+}
+.product-price-btn span {
+  font-size: 28px;
+  color: #474747;
+}
+.product-price-btn a {
+  float: right;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  background-color: #9cebd5;
+  outline: none;
+}
+.product-price-btn a:hover {
+  background-color: #79b0a1;
+}
+
+/* end show product  */
