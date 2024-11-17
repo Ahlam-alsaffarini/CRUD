@@ -31,7 +31,7 @@ in this challenge u should able:
 
 ### Links
 
-- Demo : [CURD Application](https://qr-code-component-f22bx2oqb-correlucas.vercel.app/)
+- Demo : [CURD Application](https://ahlam-alsaffarini.github.io/CRUD/index.html)
 
 ## My process
 
