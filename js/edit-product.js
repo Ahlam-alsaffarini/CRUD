@@ -1,10 +1,7 @@
 //local storage
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
-let data = JSON.parse(localStorage[id]);
-
-//new obj
-var obj = new Object();
+let data = JSON.parse(localStorage.getItem("productList"));
 
 // select each input
 let nam = document.querySelector("#name");
@@ -19,7 +16,7 @@ let validName,
   validImage = true;
 
 // //check name
-nam.value = data.name;
+nam.value = data[id].name;
 nam.addEventListener("input", (e) => {
   var regex = /^[A-Za-z][A-Za-z0-9_]/;
   if (e.target.value === "" || !e.target.value.match(regex)) {
@@ -28,11 +25,11 @@ nam.addEventListener("input", (e) => {
   } else {
     validStyle(nam);
     validName = true;
-    obj["name"] = e.target.value;
+    data[id].name = e.target.value;
   }
 });
 // //check price
-price.value = data.price;
+price.value = data[id].price;
 price.addEventListener("input", (e) => {
   var regex = /^\d+(?:[.,]\d+)*$/;
   if (e.target.value === "" || !e.target.value.match(regex)) {
@@ -41,11 +38,11 @@ price.addEventListener("input", (e) => {
   } else {
     validStyle(price);
     validPrice = true;
-    obj["price"] = e.target.value;
+    data[id].price = e.target.value;
   }
 });
 // //check description
-description.value = data.description;
+description.value = data[id].description;
 description.addEventListener("input", (e) => {
   if (e.target.value === "") {
     invalidStyle(description);
@@ -53,12 +50,12 @@ description.addEventListener("input", (e) => {
   } else {
     validStyle(description);
     validDescription = true;
-    obj["description"] = e.target.value;
+    data[id].description = e.target.value;
   }
 });
 
 // //check image
-image.value = data.image;
+image.value = data[id].image;
 image.addEventListener("input", (e) => {
   var regex = /(https?:\/\/.*\.(?:png|jpg))/i;
   if (e.target.value === "" || !e.target.value.match(regex)) {
@@ -67,14 +64,14 @@ image.addEventListener("input", (e) => {
   } else {
     validStyle(image);
     validImage = true;
-    obj["image"] = e.target.value;
+    data[id].image = e.target.value;
   }
 });
 
 // //submit
 document.querySelector("form .btn").addEventListener("click", (ele) => {
   if (validName && validPrice && validDescription && validImage) {
-    localStorage.setItem(id, JSON.stringify(obj));
+    localStorage.setItem("productList", JSON.stringify(data));
   } else {
     console.log("no");
     ele.preventDefault();

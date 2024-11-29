@@ -51,7 +51,7 @@ description.addEventListener("input", (e) => {
 
 //check image
 image.addEventListener("input", (e) => {
-  var regex = /(https?:\/\/.*\.(?:png|jpg))/i;
+  var regex = /(https?:\/\/.*\.(?:png|jpg|jpeg))/i;
   if (e.target.value === "" || !e.target.value.match(regex)) {
     invalidStyle(image);
     validImage = false;
@@ -65,7 +65,16 @@ image.addEventListener("input", (e) => {
 //submit
 document.querySelector("form .btn").addEventListener("click", (ele) => {
   if (validName && validPrice && validDescription && validImage) {
-    localStorage.setItem(localStorage.length + 1, JSON.stringify(obj));
+    let productList;
+    if (localStorage.getItem("productList") == null) {
+      productList = [];
+    } else {
+      productList = JSON.parse(localStorage.getItem("productList"));
+    }
+    let id = productList.length;
+    obj["id"] = id;
+    productList.push(obj);
+    localStorage.setItem("productList", JSON.stringify(productList));
   } else {
     console.log("no");
     ele.preventDefault();

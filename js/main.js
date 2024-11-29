@@ -1,19 +1,15 @@
-//check local storage if empty or no
-if (window.localStorage.length === 0) {
+//check local storage of items if empty or no
+let productList;
+if (localStorage.getItem("productList") == null) {
   console.log("empty");
 } else {
-  console.log("not empty");
-  var List = [];
-  let keys = Object.keys(localStorage);
-  //put data of local storage into objlist
-  for (let i = 1; i < keys.length + 1; i++) {
-    List.push(JSON.parse(localStorage.getItem(i)));
-  }
-  buildProduct(List);
+  productList = JSON.parse(localStorage.getItem("productList"));
+  buildProduct(productList);
   showSingleProduct();
   editProduct();
   deleteProduct();
 }
+
 //build data tabel
 function buildProduct(li) {
   let tbody = document.querySelector("tbody");
@@ -41,7 +37,7 @@ function buildProduct(li) {
     tdImage.appendChild(image);
     // icons
     let icons = document.createElement("td");
-    icons.id = i + 1;
+    icons.id = i;
     let divIcons = document.createElement("div");
     icons.classList.add("icons");
     tr.append(icons);
@@ -94,15 +90,18 @@ function deleteProduct() {
   let del = document.querySelectorAll(".delete");
   del.forEach((d) => {
     d.onclick = function (even) {
-      //delete element from page
-      let idDel = d.parentElement.parentElement.id;
-      let elementDelete = document.querySelectorAll("tr")[idDel];
-      elementDelete.style.display = "none";
-      //delete element from local storage
-      List.splice(idDel - 1, 1);
-      localStorage.clear();
-      for (let i = 0; i < List.length; i++) {
-        localStorage.setItem(i + 1, JSON.stringify(List[i]));
+      if (confirm("Are u sure u want to delete this item?")) {
+        //delete element from page
+        let idDel = d.parentElement.parentElement.id;
+        //delete element from local storage
+        productList.splice(idDel, 1);
+        productList.forEach((ele, index) => {
+          ele.id = index;
+          console.log(ele);
+        });
+        localStorage.setItem("productList", JSON.stringify(productList));
+        buildProduct(productList);
+        location.reload(); // Reload the current page
       }
     };
   });
