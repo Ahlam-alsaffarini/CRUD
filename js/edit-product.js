@@ -19,7 +19,11 @@ let validName,
 nam.value = data[id].name;
 nam.addEventListener("input", (e) => {
   var regex = /^[A-Za-z][A-Za-z0-9_]/;
-  if (e.target.value === "" || !e.target.value.match(regex)) {
+  if (e.target.value === nam.value) {
+    validStyle(nam);
+    validName = true;
+    data[id].name = e.target.value;
+  } else if (e.target.value === "" || !e.target.value.match(regex)) {
     invalidStyle(nam);
     validName = false;
   } else {
@@ -70,7 +74,7 @@ image.addEventListener("input", (e) => {
 
 // //submit
 document.querySelector("form .btn").addEventListener("click", (ele) => {
-  if (validName && validPrice && validDescription && validImage) {
+  if (validName || validPrice || validDescription || validImage) {
     localStorage.setItem("productList", JSON.stringify(data));
   } else {
     console.log("no");
