@@ -81,8 +81,12 @@ body {
 /* end add product  */
 
 /* start show product  */
+
 .show-product {
   max-width: 750px;
+}
+.show-product h2 {
+  overflow-wrap: anywhere;
 }
 .show-product .Product-info p {
   color: #888;
