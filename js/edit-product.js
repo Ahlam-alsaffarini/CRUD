@@ -10,22 +10,19 @@ let description = document.querySelector("#Description");
 let image = document.querySelector("#img");
 
 //set valid true
-let validName,
-  validPrice,
-  validDescription,
-  validImage = true;
+let validName = true;
+let validPrice = true;
+let validDescription = true;
+let validImage = true;
 
 // //check name
 nam.value = data[id].name;
 nam.addEventListener("input", (e) => {
   var regex = /^[A-Za-z][A-Za-z0-9_]/;
-  if (e.target.value === nam.value) {
-    validStyle(nam);
-    validName = true;
-    data[id].name = e.target.value;
-  } else if (e.target.value === "" || !e.target.value.match(regex)) {
+  if (!e.target.value.match(regex)) {
     invalidStyle(nam);
     validName = false;
+    console.log("hello");
   } else {
     validStyle(nam);
     validName = true;
@@ -36,7 +33,7 @@ nam.addEventListener("input", (e) => {
 price.value = data[id].price;
 price.addEventListener("input", (e) => {
   var regex = /^\d+(?:[.,]\d+)*$/;
-  if (e.target.value === "" || !e.target.value.match(regex)) {
+  if (!e.target.value.match(regex)) {
     invalidStyle(price);
     validPrice = false;
   } else {
@@ -48,21 +45,16 @@ price.addEventListener("input", (e) => {
 // //check description
 description.value = data[id].description;
 description.addEventListener("input", (e) => {
-  if (e.target.value === "") {
-    invalidStyle(description);
-    validDescription = false;
-  } else {
-    validStyle(description);
-    validDescription = true;
-    data[id].description = e.target.value;
-  }
+  validStyle(description);
+  validDescription = true;
+  data[id].description = e.target.value;
 });
 
 // //check image
 image.value = data[id].image;
 image.addEventListener("input", (e) => {
   var regex = /(https?:\/\/.*\.(?:png|jpg))/i;
-  if (e.target.value === "" || !e.target.value.match(regex)) {
+  if (!e.target.value.match(regex)) {
     invalidStyle(image);
     validImage = false;
   } else {
@@ -74,7 +66,7 @@ image.addEventListener("input", (e) => {
 
 // //submit
 document.querySelector("form .btn").addEventListener("click", (ele) => {
-  if (validName || validPrice || validDescription || validImage) {
+  if (validName && validPrice && validDescription && validImage) {
     localStorage.setItem("productList", JSON.stringify(data));
   } else {
     console.log("no");

@@ -8,10 +8,10 @@ let description = document.querySelector("#Description");
 let image = document.querySelector("#img");
 
 //set valid true
-let validName,
-  validPrice,
-  validDescription,
-  validImage = true;
+let validName = false;
+let validPrice = false;
+let validDescription = false;
+let validImage = false;
 
 //check name
 nam.addEventListener("input", (e) => {
